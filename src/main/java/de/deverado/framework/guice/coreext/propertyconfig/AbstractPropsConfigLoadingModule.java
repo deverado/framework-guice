@@ -47,6 +47,9 @@ public abstract class AbstractPropsConfigLoadingModule extends AbstractModule {
     @Override
     protected void configure() {
         Names.bindProperties(binder(), getLoadedProps());
+
+        ExtendablePropertyConfig extendablePropertyConfig = new ExtendablePropertyConfig().addConfig(getLoadedProps());
+        binder().bind(ExtendablePropertyConfig.class).toInstance(extendablePropertyConfig);
     }
 
 }
